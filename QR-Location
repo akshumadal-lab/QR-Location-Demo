@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>QR Location Demo</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#2196F3,#673AB7);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.card{
+
+background:white;
+width:90%;
+max-width:400px;
+padding:25px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+text-align:center;
+
+}
+
+h1{
+
+color:#2196F3;
+
+}
+
+button{
+
+width:100%;
+padding:15px;
+font-size:18px;
+background:#2196F3;
+color:white;
+border:none;
+border-radius:10px;
+margin-top:20px;
+
+}
+
+#result{
+
+margin-top:20px;
+font-size:17px;
+word-wrap:break-word;
+
+}
+
+a{
+
+display:inline-block;
+margin-top:10px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<h1>QR Location Demo</h1>
+
+<p>
+Tap the button below and allow location access if you want to share your location for this demo.
+</p>
+
+<button onclick="getLocation()">
+Share My Location
+</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+function getLocation(){
+
+if(navigator.geolocation){
+
+document.getElementById("result").innerHTML="Getting Location...";
+
+navigator.geolocation.getCurrentPosition(showPosition,showError);
+
+}else{
+
+document.getElementById("result").innerHTML="Geolocation not supported.";
+
+}
+
+}
+
+function showPosition(position){
+
+let lat=position.coords.latitude;
+let lon=position.coords.longitude;
+
+document.getElementById("result").innerHTML=
+
+"Latitude : "+lat+
+"<br><br>"+
+"Longitude : "+lon+
+"<br><br>"+
+"<a target='_blank' href='https://maps.google.com/?q="+lat+","+lon+"'>📍Open in Google Maps</a>";
+
+}
+
+function showError(error){
+
+document.getElementById("result").innerHTML="❌ Location Permission Denied";
+
+}
+
+</script>
+
+</body>
+</html>
