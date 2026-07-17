@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Location Permission Demo</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+text-align:center;
+padding:40px;
+background:#f5f5f5;
+}
+
+h1{
+color:#2196F3;
+}
+
+button{
+padding:15px 30px;
+font-size:18px;
+border:none;
+background:#2196F3;
+color:white;
+border-radius:8px;
+}
+
+#result{
+margin-top:20px;
+font-size:18px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Location Demo</h1>
+
+<p>This demo requests your location only after you tap the button and grant permission.</p>
+
+<button onclick="getLocation()">Share My Location</button>
+
+<div id="result"></div>
+
+<script>
+
+function getLocation(){
+
+if(navigator.geolocation){
+
+navigator.geolocation.getCurrentPosition(showPosition,showError);
+
+}else{
+
+document.getElementById("result").innerHTML="Geolocation not supported.";
+
+}
+
+}
+
+function showPosition(position){
+
+document.getElementById("result").innerHTML=
+"Latitude: "+position.coords.latitude+
+"<br>Longitude: "+position.coords.longitude;
+
+}
+
+function showError(error){
+
+document.getElementById("result").innerHTML=
+"Location permission denied or unavailable.";
+
+}
+
+</script>
+
+</body>
+</html>
